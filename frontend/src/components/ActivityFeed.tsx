@@ -90,8 +90,8 @@ export default function ActivityFeed({ contractId, limit = 10 }: ActivityFeedPro
           description: `User level increased to ${level} (Score: ${score}, Completed Trades: ${trades})`,
           user: evt.topics[1] ? StellarSdk.xdr.ScVal.fromXDR(evt.topics[1], 'base64').address()?.toString() : 'User',
           type: 'reputation',
-          icon: <Star className="h-4 w-4 text-purple-400" />,
-          style: 'border-purple-500/10 bg-purple-500/[0.02]',
+          icon: <Star className="h-4 w-4 text-zinc-300" />,
+          style: 'border-white/10 bg-white/[0.02]',
         };
       }
 

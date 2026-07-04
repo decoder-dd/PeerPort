@@ -17,8 +17,8 @@ export default function Home() {
         {/* Hero Area */}
         <div className="text-center space-y-8 max-w-3xl mx-auto">
           {/* Tagline */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-500/5 px-4 py-1.5 text-xs font-semibold text-indigo-400">
-            <span className="flex h-2 w-2 rounded-full bg-indigo-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-zinc-300">
+            <span className="flex h-2 w-2 rounded-full bg-white animate-pulse" />
             Soroban Smart Contract Powered Escrow
           </div>
 
@@ -54,7 +54,7 @@ export default function Home() {
 
         {/* High-Fidelity Mockup Container */}
         <div className="glass-panel p-6 border-white/10 bg-zinc-950/40 shadow-2xl relative">
-          <div className="absolute -top-3 left-6 rounded-md bg-indigo-600 px-2.5 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider">
+          <div className="absolute -top-3 left-6 rounded-md bg-zinc-800 border border-white/10 px-2.5 py-0.5 text-[10px] font-bold text-white uppercase tracking-wider">
             Live Preview
           </div>
           
@@ -73,8 +73,8 @@ export default function Home() {
 
             {/* Mock Timeline Progress */}
             <div className="grid grid-cols-3 gap-2 pt-2 text-center text-[10px] font-semibold text-zinc-500">
-              <div className="border-t-2 border-indigo-500 pt-2 text-indigo-400">1. Listing Created</div>
-              <div className="border-t-2 border-indigo-500 pt-2 text-indigo-400">2. Funds Locked</div>
+              <div className="border-t-2 border-white/40 pt-2 text-white">1. Listing Created</div>
+              <div className="border-t-2 border-white/40 pt-2 text-white">2. Funds Locked</div>
               <div className="border-t-2 border-white/10 pt-2">3. Delivery & Release</div>
             </div>
 
@@ -94,7 +94,7 @@ export default function Home() {
               </div>
               <div>
                 <span className="text-[10px] text-zinc-500 block uppercase font-medium">Reputation Earned</span>
-                <span className="text-sm text-purple-400 font-bold">+10 Score</span>
+                <span className="text-sm text-zinc-200 font-bold">+10 Score</span>
               </div>
             </div>
           </div>
@@ -103,7 +103,7 @@ export default function Home() {
         {/* Feature Grid */}
         <div className="grid md:grid-cols-3 gap-8 pt-6">
           <div className="space-y-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-white border border-white/10">
               <ShieldCheck className="h-5 w-5" />
             </div>
             <h4 className="text-lg font-bold text-zinc-200">Zero-Fee Escrow</h4>
@@ -113,7 +113,7 @@ export default function Home() {
           </div>
 
           <div className="space-y-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-white border border-white/10">
               <Star className="h-5 w-5" />
             </div>
             <h4 className="text-lg font-bold text-zinc-200">Portable Reputation</h4>

@@ -36,8 +36,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 text-xl font-bold tracking-tight text-white hover:opacity-90 transition">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-tr from-indigo-500 to-purple-500 shadow-md shadow-indigo-500/20">
-              <Layers className="h-4.5 w-4.5 text-white" />
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white shadow-md shadow-white/5">
+              <Layers className="h-4.5 w-4.5 text-black" />
             </div>
             <span className="gradient-text-accent font-extrabold">PeerPort</span>
             <span className="rounded-full bg-zinc-900 border border-white/10 px-2 py-0.5 text-[10px] font-semibold text-zinc-400">

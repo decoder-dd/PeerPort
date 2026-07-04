@@ -37,7 +37,7 @@ export default function AnalyticsPage() {
       value: '45,200 XLM', 
       change: '+24.5%', 
       icon: DollarSign, 
-      color: 'text-indigo-400 border-indigo-500/20 bg-indigo-500/5' 
+      color: 'text-white border-white/10 bg-white/5' 
     },
     { 
       label: 'Escrow Success Rate', 
@@ -51,7 +51,7 @@ export default function AnalyticsPage() {
       value: 'Level 3 (Gold)', 
       change: 'Top 5%', 
       icon: Award, 
-      color: 'text-purple-400 border-purple-500/20 bg-purple-500/5' 
+      color: 'text-white border-white/10 bg-white/5' 
     },
     { 
       label: 'Total Items Traded', 
@@ -73,21 +73,21 @@ export default function AnalyticsPage() {
       </div>
 
       {/* Profile Passport Section */}
-      <div className="glass-panel p-6 bg-gradient-to-tr from-indigo-950/20 to-purple-950/20 border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="glass-panel p-6 bg-gradient-to-tr from-zinc-950/30 to-zinc-900/30 border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-3 flex-1">
-          <div className="inline-flex items-center gap-1.5 rounded-full border border-purple-500/20 bg-purple-500/5 px-3 py-1 text-[10px] font-bold text-purple-400 uppercase tracking-wide">
-            <Star className="h-3 w-3 fill-purple-400" />
+          <div className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[10px] font-bold text-white uppercase tracking-wide">
+            <Star className="h-3 w-3 fill-white" />
             Verified Web3 Passport
           </div>
           <h2 className="text-xl font-extrabold text-white tracking-tight leading-none">decoder-dd.stellar</h2>
           <p className="text-xs text-zinc-400">
-            Reputation Score: <span className="text-purple-400 font-bold">320 trust pts</span> • Level Progress: <span className="text-zinc-200 font-semibold">68% to Level 4</span>
+            Reputation Score: <span className="text-white font-bold">320 trust pts</span> • Level Progress: <span className="text-zinc-200 font-semibold">68% to Level 4</span>
           </p>
           
           {/* Passport Progress Bar */}
           <div className="space-y-1 pt-1.5 max-w-md">
             <div className="h-2 w-full bg-zinc-950 rounded-full overflow-hidden border border-white/5">
-              <div className="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full" style={{ width: '68%' }} />
+              <div className="h-full bg-gradient-to-r from-white to-zinc-400 rounded-full" style={{ width: '68%' }} />
             </div>
             <div className="flex justify-between text-[9px] text-zinc-500 font-bold uppercase tracking-wider">
               <span>Lvl 3 Gold</span>
@@ -142,7 +142,7 @@ export default function AnalyticsPage() {
         {/* Sales Volume Chart */}
         <div className="glass-panel p-6 bg-zinc-950/20 border-white/5 space-y-4">
           <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-2">
-            <BarChart3 className="h-4 w-4 text-indigo-400" />
+            <BarChart3 className="h-4 w-4 text-white" />
             Monthly Sales Volume (XLM)
           </h3>
           <div className="h-64 pt-2">
@@ -150,14 +150,14 @@ export default function AnalyticsPage() {
               <AreaChart data={volumeData}>
                 <defs>
                   <linearGradient id="colorVolume" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#6366f1" stopOpacity={0.25}/>
-                    <stop offset="95%" stopColor="#6366f1" stopOpacity={0}/>
+                    <stop offset="5%" stopColor="#ffffff" stopOpacity={0.15}/>
+                    <stop offset="95%" stopColor="#ffffff" stopOpacity={0}/>
                   </linearGradient>
                 </defs>
                 <XAxis dataKey="name" stroke="#52525b" fontSize={10} tickLine={false} />
                 <YAxis stroke="#52525b" fontSize={10} tickLine={false} />
                 <Tooltip contentStyle={{ background: '#09090b', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12, color: '#fafafa', fontSize: 11 }} />
-                <Area type="monotone" dataKey="volume" stroke="#6366f1" strokeWidth={2} fillOpacity={1} fill="url(#colorVolume)" />
+                <Area type="monotone" dataKey="volume" stroke="#ffffff" strokeWidth={2} fillOpacity={1} fill="url(#colorVolume)" />
               </AreaChart>
             </ResponsiveContainer>
           </div>
@@ -175,8 +175,8 @@ export default function AnalyticsPage() {
                 <XAxis dataKey="name" stroke="#52525b" fontSize={10} tickLine={false} />
                 <YAxis stroke="#52525b" fontSize={10} tickLine={false} />
                 <Tooltip contentStyle={{ background: '#09090b', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12, color: '#fafafa', fontSize: 11 }} />
-                <Bar dataKey="active" fill="rgba(6, 182, 212, 0.4)" radius={[4, 4, 0, 0]} name="Active" />
-                <Bar dataKey="completed" fill="#6366f1" radius={[4, 4, 0, 0]} name="Completed" />
+                <Bar dataKey="active" fill="rgba(255, 255, 255, 0.15)" radius={[4, 4, 0, 0]} name="Active" />
+                <Bar dataKey="completed" fill="#ffffff" radius={[4, 4, 0, 0]} name="Completed" />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -185,7 +185,7 @@ export default function AnalyticsPage() {
         {/* Reputation Growth Chart */}
         <div className="glass-panel p-6 bg-zinc-950/20 border-white/5 space-y-4 md:col-span-2">
           <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-2">
-            <Award className="h-4 w-4 text-purple-400" />
+            <Award className="h-4 w-4 text-white" />
             Trust Score & Reputation Growth
           </h3>
           <div className="h-64 pt-2">
@@ -194,7 +194,7 @@ export default function AnalyticsPage() {
                 <XAxis dataKey="name" stroke="#52525b" fontSize={10} tickLine={false} />
                 <YAxis stroke="#52525b" fontSize={10} tickLine={false} />
                 <Tooltip contentStyle={{ background: '#09090b', borderColor: 'rgba(255,255,255,0.08)', borderRadius: 12, color: '#fafafa', fontSize: 11 }} />
-                <Line type="monotone" dataKey="score" stroke="#a855f7" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} name="Reputation Score" />
+                <Line type="monotone" dataKey="score" stroke="#ffffff" strokeWidth={2} dot={{ r: 4 }} activeDot={{ r: 6 }} name="Reputation Score" />
               </LineChart>
             </ResponsiveContainer>
           </div>
