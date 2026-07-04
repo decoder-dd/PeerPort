@@ -28,7 +28,7 @@ const navLinks = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { address, isConnected, isConnecting, connect, shortenAddress } =
+  const { address, isConnected, isConnecting, connect, disconnect, shortenAddress } =
     useStellarWallet();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -71,13 +71,22 @@ export default function Navbar() {
           {/* Wallet Connector */}
           <div className="hidden items-center gap-3 md:flex">
             {isConnected && address ? (
-              <Link 
-                href="/settings"
-                className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition duration-200"
-              >
-                <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="font-mono">{shortenAddress()}</span>
-              </Link>
+              <div className="flex items-center gap-2 animate-fade-in">
+                <Link 
+                  href="/settings"
+                  className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition duration-200"
+                >
+                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="font-mono">{shortenAddress()}</span>
+                </Link>
+                <button
+                  onClick={disconnect}
+                  title="Disconnect Wallet"
+                  className="flex h-8 w-8 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/5 text-red-400 hover:bg-red-500/15 hover:border-red-500/40 transition duration-200 shadow-sm"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              </div>
             ) : (
               <button
                 onClick={connect}
@@ -122,17 +131,29 @@ export default function Navbar() {
             })}
             <div className="mt-3 border-t border-white/5 pt-3">
               {isConnected && address ? (
-                <Link
-                  href="/settings"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-between rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3 text-sm font-semibold text-emerald-400"
-                >
-                  <div className="flex items-center gap-2">
-                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="font-mono">{shortenAddress()}</span>
-                  </div>
-                  <span className="text-xs text-zinc-500">Configure</span>
-                </Link>
+                <div className="flex flex-col gap-2">
+                  <Link
+                    href="/settings"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex items-center justify-between rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-3 text-sm font-semibold text-emerald-400"
+                  >
+                    <div className="flex items-center gap-2">
+                      <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      <span className="font-mono">{shortenAddress()}</span>
+                    </div>
+                    <span className="text-xs text-zinc-500">Configure</span>
+                  </Link>
+                  <button
+                    onClick={() => {
+                      disconnect();
+                      setMobileOpen(false);
+                    }}
+                    className="flex w-full items-center justify-center gap-2 rounded-xl border border-red-500/20 bg-red-500/5 py-3 text-sm font-semibold text-red-400 hover:bg-red-500/15 transition"
+                  >
+                    <X className="h-4 w-4" />
+                    Disconnect Wallet
+                  </button>
+                </div>
               ) : (
                 <button
                   onClick={() => {
