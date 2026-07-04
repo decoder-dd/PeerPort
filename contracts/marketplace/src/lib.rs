@@ -4,14 +4,11 @@ pub mod storage;
 #[cfg(test)]
 mod test;
 
-use soroban_sdk::{contract, contractimpl, symbol_short, Address, Env, BytesN, String, token};
 use crate::storage::{
-    get_admin, set_admin, has_admin,
-    get_token, set_token,
-    get_reputation, set_reputation,
-    increment_listing_counter,
-    get_listing, set_listing, Listing
+    get_admin, get_listing, get_reputation, get_token, has_admin, increment_listing_counter,
+    set_admin, set_listing, set_reputation, set_token, Listing,
 };
+use soroban_sdk::{contract, contractimpl, symbol_short, token, Address, BytesN, Env, String};
 
 #[soroban_sdk::contractclient(name = "ReputationClient")]
 pub trait ReputationInterface {
@@ -32,7 +29,13 @@ impl PeerPortMarketplace {
         set_reputation(&env, &reputation);
     }
 
-    pub fn create_listing(env: Env, seller: Address, price: i128, title: String, description: String) -> u32 {
+    pub fn create_listing(
+        env: Env,
+        seller: Address,
+        price: i128,
+        title: String,
+        description: String,
+    ) -> u32 {
         seller.require_auth();
         if price <= 0 {
             panic!("Price must be positive");
@@ -52,17 +55,15 @@ impl PeerPortMarketplace {
         set_listing(&env, id, &listing);
 
         // Emit ListingCreated event
-        env.events().publish(
-            (symbol_short!("lst_cred"), id),
-            (seller, price, title),
-        );
+        env.events()
+            .publish((symbol_short!("lst_cred"), id), (seller, price, title));
 
         id
     }
 
     pub fn buy_listing(env: Env, buyer: Address, listing_id: u32) {
         buyer.require_auth();
-        
+
         let mut listing = get_listing(&env, listing_id).expect("Listing not found");
         if listing.status != 1 {
             panic!("Listing is not open");
@@ -103,7 +104,11 @@ impl PeerPortMarketplace {
         let token_client = token::Client::new(&env, &token_addr);
 
         // Release escrowed funds from contract to seller
-        token_client.transfer(&env.current_contract_address(), &listing.seller, &listing.price);
+        token_client.transfer(
+            &env.current_contract_address(),
+            &listing.seller,
+            &listing.price,
+        );
 
         listing.status = 3; // Completed
         set_listing(&env, listing_id, &listing);
@@ -111,7 +116,7 @@ impl PeerPortMarketplace {
         // Call reputation contract to award trade points
         let reputation_addr = get_reputation(&env).expect("Reputation contract address not set");
         let reputation_client = ReputationClient::new(&env, &reputation_addr);
-        
+
         // Reward seller (merchant: true)
         reputation_client.add_completed_trade(&listing.seller, &true);
         // Reward buyer (merchant: false)
@@ -139,10 +144,8 @@ impl PeerPortMarketplace {
         set_listing(&env, listing_id, &listing);
 
         // Emit ListingCancelled event
-        env.events().publish(
-            (symbol_short!("lst_canc"), listing_id),
-            seller,
-        );
+        env.events()
+            .publish((symbol_short!("lst_canc"), listing_id), seller);
     }
 
     pub fn get_listing(env: Env, listing_id: u32) -> Option<Listing> {

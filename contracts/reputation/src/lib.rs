@@ -4,13 +4,11 @@ pub mod storage;
 #[cfg(test)]
 mod test;
 
-use soroban_sdk::{contract, contractimpl, symbol_short, Address, Env, BytesN, Symbol};
 use crate::storage::{
-    get_admin, set_admin, has_admin,
-    get_marketplace, set_marketplace,
-    get_reputation, set_reputation,
-    ReputationInfo
+    get_admin, get_marketplace, get_reputation, has_admin, set_admin, set_marketplace,
+    set_reputation, ReputationInfo,
 };
+use soroban_sdk::{contract, contractimpl, symbol_short, Address, BytesN, Env};
 
 #[contract]
 pub struct PeerPortReputation;
@@ -37,7 +35,7 @@ impl PeerPortReputation {
 
         let mut rep = get_reputation(&env, &user);
         rep.completed_trades += 1;
-        
+
         let reward = if is_merchant { 15 } else { 10 };
         rep.score += reward;
 

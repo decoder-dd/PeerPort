@@ -1,10 +1,10 @@
 #![cfg(test)]
+#![allow(deprecated)]
 
 use super::*;
 use soroban_sdk::{
-    testutils::{Address as _, Events},
-    Address, Env, IntoVal, String,
-    token
+    testutils::Address as _,
+    token, Address, Env, String,
 };
 
 // We define a mock reputation contract structure to test calls from the marketplace.
@@ -14,28 +14,33 @@ pub struct MockReputation;
 #[contractimpl]
 impl MockReputation {
     pub fn initialize(env: Env, admin: Address) {
-        env.storage().instance().set(&symbol_short!("admin"), &admin);
-    }
-    
-    pub fn set_marketplace(env: Env, marketplace: Address) {
-        env.storage().instance().set(&symbol_short!("mkt"), &marketplace);
+        env.storage()
+            .instance()
+            .set(&symbol_short!("admin"), &admin);
     }
 
-    pub fn add_completed_trade(env: Env, user: Address, is_merchant: bool) {
+    pub fn set_marketplace(env: Env, marketplace: Address) {
+        env.storage()
+            .instance()
+            .set(&symbol_short!("mkt"), &marketplace);
+    }
+
+    pub fn add_completed_trade(env: Env, user: Address, _is_merchant: bool) {
         // Assert caller is verified (or just track updates)
         let key = symbol_short!("trades");
         let current: u32 = env.storage().instance().get(&key).unwrap_or(0);
         env.storage().instance().set(&key, &(current + 1));
-        
+
         // Publish reputation event
-        env.events().publish(
-            (symbol_short!("rep_upd"), user),
-            (10u32, 1u32, current + 1),
-        );
+        env.events()
+            .publish((symbol_short!("rep_upd"), user), (10u32, 1u32, current + 1));
     }
 
     pub fn get_trades(env: Env) -> u32 {
-        env.storage().instance().get(&symbol_short!("trades")).unwrap_or(0)
+        env.storage()
+            .instance()
+            .get(&symbol_short!("trades"))
+            .unwrap_or(0)
     }
 }
 
@@ -77,7 +82,7 @@ fn test_buy_and_escrow_locking() {
 
     let admin = Address::generate(&env);
     let token_admin = Address::generate(&env);
-    
+
     // Setup Stellar Asset Contract (Token)
     let token_id = env.register_stellar_asset_contract(token_admin.clone());
     let token_client = token::StellarAssetClient::new(&env, &token_id);
@@ -91,7 +96,7 @@ fn test_buy_and_escrow_locking() {
 
     let seller = Address::generate(&env);
     let buyer = Address::generate(&env);
-    
+
     // Mint tokens to buyer
     token_client.mint(&buyer, &500i128);
     assert_eq!(token_util_client.balance(&buyer), 500i128);
@@ -122,14 +127,14 @@ fn test_complete_listing_releases_escrow_and_triggers_reputation() {
 
     let admin = Address::generate(&env);
     let token_admin = Address::generate(&env);
-    
+
     let token_id = env.register_stellar_asset_contract(token_admin.clone());
     let token_client = token::StellarAssetClient::new(&env, &token_id);
     let token_util_client = token::Client::new(&env, &token_id);
 
     let rep_id = env.register_contract(None, MockReputation);
     let rep_client = MockReputationClient::new(&env, &rep_id);
-    
+
     let mkt_id = env.register_contract(None, PeerPortMarketplace);
     let client = PeerPortMarketplaceClient::new(&env, &mkt_id);
 
@@ -137,7 +142,7 @@ fn test_complete_listing_releases_escrow_and_triggers_reputation() {
 
     let seller = Address::generate(&env);
     let buyer = Address::generate(&env);
-    
+
     token_client.mint(&buyer, &1000i128);
 
     let title = String::from_str(&env, "Physical Good");
@@ -189,7 +194,7 @@ fn test_cancel_listing() {
     let price = 50i128;
 
     let listing_id = client.create_listing(&seller, &price, &title, &desc);
-    
+
     // Cancel listing
     client.cancel_listing(&seller, &listing_id);
 

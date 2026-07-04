@@ -32,7 +32,9 @@ pub fn get_marketplace(env: &Env) -> Option<Address> {
 }
 
 pub fn set_marketplace(env: &Env, marketplace: &Address) {
-    env.storage().instance().set(&DataKey::Marketplace, marketplace);
+    env.storage()
+        .instance()
+        .set(&DataKey::Marketplace, marketplace);
 }
 
 pub fn get_reputation(env: &Env, user: &Address) -> ReputationInfo {

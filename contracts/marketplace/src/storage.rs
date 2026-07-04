@@ -46,16 +46,23 @@ pub fn get_reputation(env: &Env) -> Option<Address> {
 }
 
 pub fn set_reputation(env: &Env, reputation: &Address) {
-    env.storage().instance().set(&DataKey::Reputation, reputation);
+    env.storage()
+        .instance()
+        .set(&DataKey::Reputation, reputation);
 }
 
 pub fn get_listing_counter(env: &Env) -> u32 {
-    env.storage().instance().get(&DataKey::ListingCounter).unwrap_or(0)
+    env.storage()
+        .instance()
+        .get(&DataKey::ListingCounter)
+        .unwrap_or(0)
 }
 
 pub fn increment_listing_counter(env: &Env) -> u32 {
     let next = get_listing_counter(env) + 1;
-    env.storage().instance().set(&DataKey::ListingCounter, &next);
+    env.storage()
+        .instance()
+        .set(&DataKey::ListingCounter, &next);
     next
 }
 

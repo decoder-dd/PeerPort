@@ -4,8 +4,8 @@
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "====================================================" -ForegroundColor Orange
-Write-Host "       PEERPORT LOCAL SANDBOX DEPLOYMENT PIPELINE    " -ForegroundColor Orange
+Write-Host "====================================================" -ForegroundColor Yellow
+Write-Host "       PEERPORT LOCAL SANDBOX DEPLOYMENT PIPELINE    " -ForegroundColor Yellow
 Write-Host "====================================================`n"
 
 # 1. Build Soroban contracts
@@ -18,8 +18,8 @@ New-Item -ItemType Directory -Force -Path "contracts/optimized" | Out-Null
 
 # 2. Optimize WASM binaries
 Write-Host "[Step 2/5] Optimizing WASM binaries..." -ForegroundColor Green
-stellar contract optimize --wasm .cargo_target/wasm32-unknown-unknown/release/peerport_reputation.wasm --output-dir contracts/optimized
-stellar contract optimize --wasm .cargo_target/wasm32-unknown-unknown/release/peerport_marketplace.wasm --output-dir contracts/optimized
+stellar contract optimize --wasm .cargo_target/wasm32-unknown-unknown/release/peerport_reputation.wasm --wasm-out contracts/optimized/peerport_reputation.wasm
+stellar contract optimize --wasm .cargo_target/wasm32-unknown-unknown/release/peerport_marketplace.wasm --wasm-out contracts/optimized/peerport_marketplace.wasm
 
 # 3. Deploy contracts locally
 Write-Host "[Step 3/5] Deploying contracts to Local Sandbox..." -ForegroundColor Green
@@ -27,12 +27,12 @@ Write-Host "[Step 3/5] Deploying contracts to Local Sandbox..." -ForegroundColor
 # Execute Deploy Reputation
 Write-Host ">> Deploying PeerPort Reputation Contract..." -ForegroundColor Cyan
 $reputationId = stellar contract deploy --wasm contracts/optimized/peerport_reputation.wasm --source alice --network local
-Write-Host "✔ Reputation deployed: $reputationId" -ForegroundColor Green
+Write-Host "[OK] Reputation deployed: $reputationId" -ForegroundColor Green
 
 # Execute Deploy Marketplace
 Write-Host ">> Deploying PeerPort Marketplace Contract..." -ForegroundColor Cyan
 $marketplaceId = stellar contract deploy --wasm contracts/optimized/peerport_marketplace.wasm --source alice --network local
-Write-Host "✔ Marketplace deployed: $marketplaceId`n"
+Write-Host "[OK] Marketplace deployed: $marketplaceId`n"
 
 # 4. Initialize Contracts
 Write-Host "[Step 4/5] Initializing contract configurations..." -ForegroundColor Green
@@ -45,17 +45,17 @@ Write-Host "Alice Address (Admin): $aliceAddr" -ForegroundColor Cyan
 Write-Host ">> Initializing reputation contract with admin..." -ForegroundColor Cyan
 stellar contract invoke --id $reputationId --source alice --network local -- initialize --admin $aliceAddr
 stellar contract invoke --id $reputationId --source alice --network local -- set_marketplace --marketplace $marketplaceId
-Write-Host "✔ Reputation contract configured." -ForegroundColor Green
+Write-Host "[OK] Reputation contract configured." -ForegroundColor Green
 
 # Initialize Marketplace Contract
 # Create a local test token (SAC)
 Write-Host ">> Creating local test asset contract (SAC)..." -ForegroundColor Cyan
 $tokenSac = stellar contract asset deploy-stellar-asset --asset native --source alice --network local
-Write-Host "✔ Local Test Token: $tokenSac" -ForegroundColor Green
+Write-Host "[OK] Local Test Token: $tokenSac" -ForegroundColor Green
 
-Write-Host ">> Initializing marketplace contract with token & reputation addresses..." -ForegroundColor Cyan
+Write-Host ">> Initializing marketplace contract with token and reputation addresses..." -ForegroundColor Cyan
 stellar contract invoke --id $marketplaceId --source alice --network local -- initialize --admin $aliceAddr --token $tokenSac --reputation $reputationId
-Write-Host "✔ Marketplace contract configured." -ForegroundColor Green
+Write-Host "[OK] Marketplace contract configured." -ForegroundColor Green
 
 # 5. Write env vars to frontend
 Write-Host "`n[Step 5/5] Updating frontend environment variables..." -ForegroundColor Green
@@ -67,8 +67,8 @@ NEXT_PUBLIC_TOKEN_CONTRACT_ID=$tokenSac
 "@
 
 $envContent | Out-File -FilePath "frontend/.env.local" -Encoding utf8
-Write-Host "✔ Updated frontend/.env.local with local contract addresses." -ForegroundColor Green
+Write-Host "[OK] Updated frontend/.env.local with local contract addresses." -ForegroundColor Green
 
-Write-Host "`n====================================================" -ForegroundColor Orange
-Write-Host "✔ LOCAL SANDBOX DEPLOYMENT COMPLETE (SUCCESS)       " -ForegroundColor Orange
-Write-Host "====================================================" -ForegroundColor Orange
+Write-Host "`n====================================================" -ForegroundColor Yellow
+Write-Host "[OK] LOCAL SANDBOX DEPLOYMENT COMPLETE (SUCCESS)       " -ForegroundColor Yellow
+Write-Host "====================================================" -ForegroundColor Yellow
