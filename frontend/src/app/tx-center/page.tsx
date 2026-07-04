@@ -3,7 +3,6 @@
 import { useTxStore, type Transaction } from '@/state/useTxStore';
 import { useWalletStore } from '@/state/useWalletStore';
 import { getExplorerTxUrl } from '@/services/rpc';
-import { useStellarWallet } from '@/hooks/useStellarWallet';
 import {
   ArrowLeftRight,
   Clock,
@@ -18,7 +17,6 @@ import {
 export default function TxCenterPage() {
   const { transactions, retryTransaction, clearTransactions } = useTxStore();
   const network = useWalletStore((s) => s.network);
-  const { isConnected } = useStellarWallet();
 
   const getStatusBadge = (status: Transaction['status']) => {
     switch (status) {

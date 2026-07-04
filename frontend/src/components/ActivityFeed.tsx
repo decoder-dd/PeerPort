@@ -3,7 +3,7 @@
 import { useContractEvents } from '@/hooks/useContractEvents';
 import { useWalletStore } from '@/state/useWalletStore';
 import { getExplorerContractUrl, type ContractEvent } from '@/services/rpc';
-import { Activity, Clock, ExternalLink, ArrowRight, Star } from 'lucide-react';
+import { Activity, Clock, ExternalLink, Star } from 'lucide-react';
 import * as StellarSdk from '@stellar/stellar-sdk';
 
 interface ActivityFeedProps {
@@ -56,7 +56,6 @@ export default function ActivityFeed({ contractId, limit = 10 }: ActivityFeedPro
       if (topicSymbol === 'lst_comp') {
         // Listing Completed: (seller, buyer)
         const vec = rawVal.vec();
-        const seller = vec?.[0]?.address()?.toString() || 'Seller';
         const buyer = vec?.[1]?.address()?.toString() || 'Buyer';
         return {
           title: 'Listing Completed',
@@ -97,7 +96,7 @@ export default function ActivityFeed({ contractId, limit = 10 }: ActivityFeedPro
         user: evt.contractId,
         type: 'raw',
       };
-    } catch (e) {
+    } catch {
       return {
         title: 'System Event',
         description: 'Failed to parse Soroban event XDR payload',

@@ -5,7 +5,7 @@ import { useStellarWallet } from '@/hooks/useStellarWallet';
 import { useMarketplace } from '@/hooks/useMarketplace';
 import ListingCard from '@/components/ListingCard';
 import { PlusCircle, Info, RefreshCw, Layers } from 'lucide-react';
-import type { Listing } from '@/state/useListingStore';
+import { useListingStore, type Listing } from '@/state/useListingStore';
 
 export default function Dashboard() {
   const { address, isConnected, connect } = useStellarWallet();
@@ -60,7 +60,6 @@ export default function Dashboard() {
       ];
       // Set mock listings inside store directly
       // Since useMarketplace exports listings from useListingStore, we can initialize it
-      const { useListingStore } = require('@/state/useListingStore');
       useListingStore.getState().setListings(mockListings);
     }
   }, [listings.length]);
@@ -196,14 +195,14 @@ export default function Dashboard() {
 
       {/* Filter Tabs */}
       <div className="flex border-b border-white/5 pb-px gap-4">
-        {[
+        {([
           { id: 'all', label: 'All Listings' },
           { id: 'mine', label: 'My Listings' },
           { id: 'purchases', label: 'My Purchases' },
-        ].map((tab) => (
+        ] as const).map((tab) => (
           <button
             key={tab.id}
-            onClick={() => setFilter(tab.id as any)}
+            onClick={() => setFilter(tab.id)}
             className={`pb-3 text-sm font-semibold transition-all relative ${
               filter === tab.id
                 ? 'text-white border-b-2 border-white'

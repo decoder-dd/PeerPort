@@ -2,10 +2,7 @@
 #![allow(deprecated)]
 
 use super::*;
-use soroban_sdk::{
-    testutils::Address as _,
-    token, Address, Env, String,
-};
+use soroban_sdk::{testutils::Address as _, token, Address, Env, String};
 
 // We define a mock reputation contract structure to test calls from the marketplace.
 #[contract]

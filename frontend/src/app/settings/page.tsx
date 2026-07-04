@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useWalletStore } from '@/state/useWalletStore';
 import { useStellarWallet } from '@/hooks/useStellarWallet';
 import { logger } from '@/services/tracking';
-import { Settings, Network, Cpu, ShieldCheck, Download } from 'lucide-react';
+import { Network, Cpu, ShieldCheck, Download } from 'lucide-react';
 
 export default function SettingsPage() {
   const { network, setNetwork } = useWalletStore();
