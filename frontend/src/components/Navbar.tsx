@@ -13,11 +13,13 @@ import {
   Menu,
   X,
   Layers,
+  Send,
 } from 'lucide-react';
 import { useState } from 'react';
 
 const navLinks = [
   { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { href: '/transfer', label: 'Transfer', icon: Send },
   { href: '/feed', label: 'Activity', icon: Activity },
   { href: '/tx-center', label: 'Transactions', icon: ArrowLeftRight },
   { href: '/analytics', label: 'Analytics', icon: BarChart3 },

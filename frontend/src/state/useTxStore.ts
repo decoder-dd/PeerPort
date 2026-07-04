@@ -7,7 +7,7 @@ export type TxStatus = 'pending' | 'simulating' | 'submitting' | 'confirmed' | '
 
 export interface Transaction {
   id: string;
-  type: 'create_listing' | 'buy_listing' | 'complete_listing' | 'cancel_listing';
+  type: 'create_listing' | 'buy_listing' | 'complete_listing' | 'cancel_listing' | 'xlm_transfer';
   status: TxStatus;
   hash: string | null;
   error: string | null;
