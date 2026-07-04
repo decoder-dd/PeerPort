@@ -7,11 +7,11 @@ const MARKETPLACE_CONTRACT_ID = process.env.NEXT_PUBLIC_MARKETPLACE_CONTRACT_ID 
 
 export default function FeedPage() {
   return (
-    <div className="page-container space-y-8 animate-fade-in">
+    <div className="mx-auto max-w-5xl px-6 py-10 space-y-10 animate-fade-in relative z-10">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-extrabold text-zinc-100">Live Activity</h1>
-        <p className="text-zinc-500 text-sm mt-1">
+        <h1 className="text-3xl font-extrabold tracking-tight text-white">Live Activity</h1>
+        <p className="text-zinc-500 text-xs mt-1 font-medium">
           Real-time event subscriptions monitoring the Soroban transaction log lifecycle.
         </p>
       </div>
@@ -19,13 +19,13 @@ export default function FeedPage() {
       <div className="grid lg:grid-cols-3 gap-8">
         {/* Left Column: Event Stream */}
         <div className="lg:col-span-2 space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-bold text-zinc-200 flex items-center gap-2">
-              <Activity className="h-4 w-4 text-zinc-300" />
+          <div className="flex items-center justify-between border-b border-white/5 pb-3">
+            <h2 className="text-sm font-bold text-zinc-300 uppercase tracking-wider flex items-center gap-2">
+              <Activity className="h-4 w-4 text-indigo-400 animate-pulse" />
               Event Stream
             </h2>
-            <span className="inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs bg-green-500/10 text-green-400">
-              <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-ping" />
+            <span className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-ping" />
               Listening
             </span>
           </div>
@@ -35,16 +35,16 @@ export default function FeedPage() {
 
         {/* Right Column: Explainer */}
         <div className="space-y-6">
-          <div className="glass-card p-6 space-y-4 bg-zinc-950/20">
-            <h3 className="text-md font-bold text-zinc-200 flex items-center gap-2">
-              <HelpCircle className="h-4 w-4 text-zinc-300" />
+          <div className="glass-panel p-5 space-y-4 bg-zinc-950/20 border-white/5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-2">
+              <HelpCircle className="h-4 w-4 text-indigo-400" />
               Event Architecture
             </h3>
-            <div className="space-y-3 text-sm text-zinc-500 leading-relaxed">
+            <div className="space-y-3 text-xs text-zinc-500 leading-relaxed">
               <p>
                 Soroban contracts emit structured events using the contract environments event publishing pipeline:
               </p>
-              <pre className="bg-zinc-900/60 p-2.5 rounded-lg border border-white/5 font-mono text-xs text-zinc-300">
+              <pre className="bg-zinc-950/80 p-3 rounded-lg border border-white/5 font-mono text-[10px] text-zinc-300 overflow-x-auto leading-normal">
 {`env.events().publish(
   (symbol_short!("lst_lock"), id),
   (buyer, price),
@@ -59,20 +59,24 @@ export default function FeedPage() {
             </div>
           </div>
 
-          <div className="glass-card p-6 space-y-4 bg-white/5 border-white/10">
-            <h3 className="text-md font-bold text-zinc-200 flex items-center gap-2">
-              <Info className="h-4 w-4 text-zinc-300" />
+          <div className="glass-panel p-5 space-y-4 bg-zinc-950/20 border-white/5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-300 flex items-center gap-2">
+              <Info className="h-4 w-4 text-purple-400" />
               Contract Metadata
             </h3>
-            <div className="space-y-2 text-xs font-mono text-zinc-500">
-              <p className="text-zinc-400">Marketplace Address:</p>
-              <p className="bg-zinc-900/50 p-2 rounded border border-white/5 break-all">
-                {MARKETPLACE_CONTRACT_ID}
-              </p>
-              <p className="text-zinc-400 mt-4">Network Target:</p>
-              <p className="bg-zinc-900/50 p-2 rounded border border-white/5">
-                Stellar Testnet (RPC: soroban-testnet.stellar.org)
-              </p>
+            <div className="space-y-3 text-[10px] font-semibold">
+              <div>
+                <span className="text-zinc-500 block uppercase tracking-wider">Marketplace Address</span>
+                <span className="bg-zinc-950 border border-white/5 p-2 rounded-lg font-mono text-zinc-300 block break-all mt-1">
+                  {MARKETPLACE_CONTRACT_ID}
+                </span>
+              </div>
+              <div>
+                <span className="text-zinc-500 block uppercase tracking-wider">Network Target</span>
+                <span className="bg-zinc-950 border border-white/5 p-2 rounded-lg font-mono text-zinc-300 block mt-1">
+                  Stellar Testnet
+                </span>
+              </div>
             </div>
           </div>
         </div>

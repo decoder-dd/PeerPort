@@ -1,123 +1,229 @@
 @import "tailwindcss";
 @source "../**/*.{ts,tsx}";
 
-/* ── Minimalist Monochromatic Theme ── */
+/* ── Web3 Dark Space Theme ── */
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --card: #09090b;
-  --card-border: rgba(255, 255, 255, 0.08);
-  --card-hover-border: rgba(255, 255, 255, 0.2);
-  --accent: #ffffff;
-  --accent-light: #fafafa;
-  --accent-dark: #71717a;
-  --muted: #52525b;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --background: #030303;
+  --foreground: #f4f4f5;
+  
+  /* Primary Indigo/Violet Accents */
+  --primary: #6366f1;
+  --primary-glow: rgba(99, 102, 241, 0.15);
+  --accent: #a855f7;
+  
+  /* Glass Cards */
+  --glass-bg: rgba(10, 10, 12, 0.45);
+  --glass-border: rgba(255, 255, 255, 0.05);
+  --glass-border-hover: rgba(255, 255, 255, 0.12);
+  
+  /* States */
+  --color-open: #06b6d4;      /* Electric Cyan */
+  --color-locked: #f59e0b;    /* Warm Amber */
+  --color-completed: #10b981; /* Emerald Green */
+  --color-cancelled: #71717a; /* Zinc Grey */
+  
+  --radius-lg: 16px;
+  --radius-md: 10px;
 }
 
-/* ── Reset ── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-html, body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  background: var(--background);
+/* ── Global Styles ── */
+body {
+  background-color: var(--background);
   color: var(--foreground);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.5;
+  letter-spacing: -0.01em;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* ── Minimalist Glass/Card ── */
-.glass-card {
-  background: var(--card);
-  border: 1px solid var(--card-border);
+/* Futuristic background mesh grid */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Glowing background ambient spots */
+.ambient-glow-purple {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, transparent 70%);
+  top: -150px;
+  left: 10%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(40px);
+}
+
+.ambient-glow-blue {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.06) 0%, transparent 70%);
+  top: 25%;
+  right: 5%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(50px);
+}
+
+/* ── Premium Glassmorphic Components ── */
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-lg);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.glass-card:hover {
-  border-color: var(--card-hover-border);
+.glass-panel:hover {
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(255, 255, 255, 0.02);
 }
 
-/* ── Status Badges ── */
-.status-open      { color: #ffffff; border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; }
-.status-locked    { color: #a1a1aa; border: 1px solid rgba(255, 255, 255, 0.1); background: transparent; }
-.status-completed { color: #ffffff; border: 1px solid #ffffff; background: transparent; }
-.status-cancelled { color: #52525b; border: 1px solid rgba(255, 255, 255, 0.05); background: transparent; }
-.status-failed    { color: #52525b; border: 1px solid rgba(255, 255, 255, 0.05); background: transparent; }
-.status-pending   { color: #a1a1aa; border: 1px solid rgba(255, 255, 255, 0.1); background: transparent; }
-
-/* ── Buttons (High Contrast Monochrome) ── */
+/* ── Web3 Buttons with Gradient Border effects ── */
 .btn-primary {
-  background: #ffffff;
-  color: #000000;
-  font-weight: 500;
-  padding: 10px 24px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 22px;
   border-radius: var(--radius-md);
-  border: 1px solid #ffffff;
+  border: none;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.25);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
+  gap: 8px;
 }
 
 .btn-primary:hover {
-  background: #000000;
-  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+  filter: brightness(1.1);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
 }
 
 .btn-secondary {
-  background: transparent;
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+  color: #e4e4e7;
   font-weight: 500;
-  padding: 10px 24px;
+  padding: 10px 22px;
   border-radius: var(--radius-md);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
+  gap: 8px;
 }
 
 .btn-secondary:hover {
-  border-color: #ffffff;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); }
-
-/* ── Layout ── */
-.page-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 24px;
+/* ── Status Indicators ── */
+.badge-status {
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid transparent;
 }
 
-/* ── Stellar Wallets Kit Modal Override ── */
-stellar-wallets-kit, [class*="stellar-wallets"] {
-  z-index: 9999 !important;
+.badge-open {
+  color: var(--color-open);
+  background: rgba(6, 182, 212, 0.08);
+  border-color: rgba(6, 182, 212, 0.2);
 }
 
-/* ── Form Inputs ── */
+.badge-locked {
+  color: var(--color-locked);
+  background: rgba(245, 158, 11, 0.08);
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.badge-completed {
+  color: var(--color-completed);
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.badge-cancelled {
+  color: var(--color-cancelled);
+  background: rgba(113, 113, 122, 0.08);
+  border-color: rgba(113, 113, 122, 0.2);
+}
+
+/* ── Text Gradients ── */
+.gradient-text-hero {
+  background: linear-gradient(135deg, #ffffff 30%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-accent {
+  background: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Scrollbar customization ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Overriding form controls globally */
 input, textarea, select {
-  background: #09090b !important;
-  border: 1px solid rgba(255, 255, 255, 0.1) !important;
-  color: #ffffff !important;
-  border-radius: 6px !important;
-  padding: 8px 12px !important;
+  background: rgba(20, 20, 25, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #fafafa !important;
+  border-radius: var(--radius-md) !important;
+  padding: 10px 14px !important;
   outline: none !important;
+  transition: all 0.2s ease !important;
 }
 
 input:focus, textarea:focus, select:focus {
-  border-color: #ffffff !important;
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.15) !important;
+  background: rgba(20, 20, 25, 0.85) !important;
 }

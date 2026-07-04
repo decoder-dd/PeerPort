@@ -47,8 +47,8 @@ describe('ListingCard Component', () => {
     
     expect(screen.getByText('Test Digital Good')).toBeInTheDocument();
     expect(screen.getByText('Awesome test description details.')).toBeInTheDocument();
-    expect(screen.getByText('15.00 XLM')).toBeInTheDocument();
-    expect(screen.getByText('Open')).toBeInTheDocument();
+    expect(screen.getByText(/15\.00/i)).toBeInTheDocument();
+    expect(screen.getByText('Open Listing')).toBeInTheDocument();
   });
 
   test('should show correct buttons based on connection state', () => {
@@ -56,7 +56,7 @@ describe('ListingCard Component', () => {
     const mockBuy = vi.fn();
     render(<ListingCard listing={sampleListing} onBuy={mockBuy} currentAddress={null} />);
     
-    const buyBtn = screen.getByRole('button', { name: /buy now/i });
+    const buyBtn = screen.getByRole('button', { name: /lock escrow/i });
     expect(buyBtn).toBeInTheDocument();
   });
 });

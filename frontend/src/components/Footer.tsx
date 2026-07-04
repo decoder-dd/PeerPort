@@ -2,28 +2,28 @@ import { Github, ExternalLink } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-[#0a0a12]/60 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-4 py-8 md:px-6">
+    <footer className="border-t border-white/5 bg-[#030303]/90 backdrop-blur-md mt-auto">
+      <div className="mx-auto max-w-5xl px-6 py-10">
         <div className="grid gap-8 md:grid-cols-3">
           {/* Brand */}
-          <div>
-            <h3 className="gradient-text text-lg font-bold">PeerPort</h3>
-            <p className="mt-2 text-sm text-zinc-500">
+          <div className="space-y-3">
+            <h3 className="gradient-text-accent text-lg font-bold">PeerPort</h3>
+            <p className="text-xs text-zinc-500 leading-relaxed">
               Decentralized peer-to-peer marketplace built on Stellar.
-              Trade digital assets securely with on-chain escrow.
+              Trade digital assets securely with on-chain escrow locks and portable reputation systems.
             </p>
           </div>
 
           {/* Links */}
-          <div>
-            <h4 className="text-sm font-semibold text-zinc-300">Resources</h4>
-            <ul className="mt-2 space-y-1.5">
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">Resources</h4>
+            <ul className="space-y-2">
               <li>
                 <a
                   href="https://developers.stellar.org"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-sm text-zinc-500 transition hover:text-white"
+                  className="inline-flex items-center gap-1 text-xs text-zinc-500 transition hover:text-white"
                 >
                   Stellar Docs <ExternalLink className="h-3 w-3" />
                 </a>
@@ -33,31 +33,31 @@ export default function Footer() {
                   href="https://stellar.expert"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-1 text-sm text-zinc-500 transition hover:text-white"
+                  className="inline-flex items-center gap-1 text-xs text-zinc-500 transition hover:text-white"
                 >
-                  Explorer <ExternalLink className="h-3 w-3" />
+                  Stellar.Expert Explorer <ExternalLink className="h-3 w-3" />
                 </a>
               </li>
             </ul>
           </div>
 
           {/* Source */}
-          <div>
-            <h4 className="text-sm font-semibold text-zinc-300">Open Source</h4>
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-zinc-400">Open Source</h4>
             <a
-              href="https://github.com"
+              href="https://github.com/decoder-dd/PeerPort"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 flex items-center gap-2 text-sm text-zinc-500 transition hover:text-white"
+              className="inline-flex items-center gap-2 text-xs text-zinc-500 transition hover:text-white"
             >
               <Github className="h-4 w-4" />
-              View on GitHub
+              View Repository on GitHub
             </a>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-white/5 pt-4 text-center text-xs text-zinc-600">
-          © {new Date().getFullYear()} PeerPort. Built on Stellar Network.
+        <div className="mt-8 border-t border-white/5 pt-6 text-center text-[10px] font-semibold text-zinc-600 tracking-wide uppercase">
+          © {new Date().getFullYear()} PeerPort. Powered by Stellar Soroban.
         </div>
       </div>
     </footer>
