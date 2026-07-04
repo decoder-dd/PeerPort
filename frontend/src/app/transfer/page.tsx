@@ -64,17 +64,35 @@ export default function TransferPage() {
       // Load source account details from ledger to fetch current sequence number
       const sourceAccount = await server.getAccount(address);
 
+      // Check if destination account exists on-chain
+      let recipientExists = true;
+      try {
+        await server.getAccount(recipient);
+      } catch {
+        recipientExists = false;
+      }
+
+      // If destination does not exist, check if amount is enough to create account (min 1.0 XLM)
+      if (!recipientExists && numericAmount < 1.0) {
+        throw new Error('Destination account is unfunded. The minimum amount to fund and create a new Stellar account is 1.0 XLM.');
+      }
+
       // Build transaction builder
       const tx = new StellarSdk.TransactionBuilder(sourceAccount, {
         fee: '100000', // 0.01 XLM base fee
         networkPassphrase: config.networkPassphrase,
       })
         .addOperation(
-          StellarSdk.Operation.payment({
-            destination: recipient,
-            asset: StellarSdk.Asset.native(),
-            amount: amount,
-          })
+          recipientExists
+            ? StellarSdk.Operation.payment({
+                destination: recipient,
+                asset: StellarSdk.Asset.native(),
+                amount: amount,
+              })
+            : StellarSdk.Operation.createAccount({
+                destination: recipient,
+                startingBalance: amount,
+              })
         )
         .setTimeout(30)
         .build();
