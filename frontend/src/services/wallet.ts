@@ -3,6 +3,7 @@
 import {
   StellarWalletsKit,
   Networks,
+  SwkAppDarkTheme,
 } from '@creit.tech/stellar-wallets-kit';
 import { FreighterModule, FREIGHTER_ID } from '@creit.tech/stellar-wallets-kit/modules/freighter';
 import { AlbedoModule } from '@creit.tech/stellar-wallets-kit/modules/albedo';
@@ -29,6 +30,7 @@ export function initWalletKit(network: 'testnet' | 'mainnet' = 'testnet') {
         new HanaModule(),
       ],
       network: getNetworkPassphrase(network),
+      theme: SwkAppDarkTheme,
     });
     initialized = true;
   }
