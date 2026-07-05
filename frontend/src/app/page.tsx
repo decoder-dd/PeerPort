@@ -118,7 +118,7 @@ export default function Home() {
           </div>
 
           <div className="space-y-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/5 text-white border border-white/10">
               <Cpu className="h-5 w-5" />
             </div>
             <h4 className="text-lg font-bold text-zinc-200">Automated SAC Rules</h4>
