@@ -47,89 +47,75 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden items-center gap-1.5 md:flex">
-            {navLinks.map(({ href, label, icon: Icon }) => {
-              const active = pathname === href;
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`flex items-center gap-2 rounded-xl px-3.5 py-2 text-xs font-semibold tracking-wide transition-all duration-200 ${
-                    active
-                      ? 'bg-white/10 text-white shadow-inner border border-white/5'
-                      : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5 border border-transparent'
-                  }`}
-                >
-                  <Icon className="h-3.5 w-3.5" />
-                  {label}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Wallet Connector */}
-          <div className="hidden items-center gap-3 md:flex">
-            {isConnected && address ? (
-              <div className="flex items-center gap-2 animate-fade-in">
-                <Link 
-                  href="/settings"
-                  className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition duration-200"
-                >
-                  <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="font-mono">{shortenAddress()}</span>
-                </Link>
+          {/* Right Action Area */}
+          <div className="flex items-center gap-3">
+            {/* Wallet Connector (Desktop view only, hidden on mobile in favor of drawer placement) */}
+            <div className="hidden items-center gap-3 md:flex">
+              {isConnected && address ? (
+                <div className="flex items-center gap-2 animate-fade-in">
+                  <Link 
+                    href="/settings"
+                    className="flex items-center gap-2 rounded-xl border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-xs font-semibold text-emerald-400 hover:bg-emerald-500/10 hover:border-emerald-500/40 transition duration-200"
+                  >
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="font-mono">{shortenAddress()}</span>
+                  </Link>
+                  <button
+                    onClick={disconnect}
+                    title="Disconnect Wallet"
+                    className="flex h-8 w-8 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/5 text-red-400 hover:bg-red-500/15 hover:border-red-500/40 transition duration-200 shadow-sm"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              ) : (
                 <button
-                  onClick={disconnect}
-                  title="Disconnect Wallet"
-                  className="flex h-8 w-8 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/5 text-red-400 hover:bg-red-500/15 hover:border-red-500/40 transition duration-200 shadow-sm"
+                  onClick={connect}
+                  disabled={isConnecting}
+                  className="btn-primary flex items-center gap-2 text-xs font-bold py-2.5 px-4.5"
                 >
-                  <X className="h-4 w-4" />
+                  <Wallet className="h-3.5 w-3.5" />
+                  {isConnecting ? 'Connecting...' : 'Connect Wallet'}
                 </button>
-              </div>
-            ) : (
-              <button
-                onClick={connect}
-                disabled={isConnecting}
-                className="btn-primary flex items-center gap-2 text-xs font-bold py-2.5 px-4.5"
-              >
-                <Wallet className="h-3.5 w-3.5" />
-                {isConnecting ? 'Connecting...' : 'Connect Wallet'}
-              </button>
-            )}
-          </div>
+              )}
+            </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="rounded-xl p-2 text-zinc-400 hover:bg-white/5 md:hidden transition"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+            {/* Menu Toggle (Visible on both desktop & mobile) */}
+            <button
+              className="rounded-xl p-2 text-zinc-400 hover:bg-white/5 transition"
+              onClick={() => setMobileOpen(!mobileOpen)}
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Menu dropdown */}
+        {/* Collapsible Dropdown Menu */}
         {mobileOpen && (
-          <div className="mt-4 space-y-1.5 rounded-xl border border-white/5 bg-zinc-950/95 p-3 md:hidden animate-fade-in">
-            {navLinks.map(({ href, label, icon: Icon }) => {
-              const active = pathname === href;
-              return (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition ${
-                    active
-                      ? 'bg-white/10 text-white border border-white/5'
-                      : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5'
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  {label}
-                </Link>
-              );
-            })}
-            <div className="mt-3 border-t border-white/5 pt-3">
+          <div className="mt-4 rounded-xl border border-white/5 bg-zinc-950/95 p-3 animate-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+              {navLinks.map(({ href, label, icon: Icon }) => {
+                const active = pathname === href;
+                return (
+                  <Link
+                    key={href}
+                    href={href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200 border ${
+                      active
+                        ? 'bg-white/10 text-white border-white/10 shadow-inner'
+                        : 'text-zinc-400 hover:text-zinc-200 hover:bg-white/5 border-transparent'
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                    {label}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Wallet Connector for Mobile View */}
+            <div className="mt-3 border-t border-white/5 pt-3 md:hidden">
               {isConnected && address ? (
                 <div className="flex flex-col gap-2">
                   <Link
