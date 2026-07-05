@@ -29,9 +29,9 @@
 ---
 
 * **GitHub Repository:** [decoder-dd/PeerPort](https://github.com/decoder-dd/PeerPort)
-* **Walkthrough Demo Video:** 
-<!-- Video Placeholder -->
-*(Add demo video link here)*
+* **Walkthrough Demo Video:**
+
+https://github.com/user-attachments/assets/ad9604cf-fe61-4fca-b7e3-62f78ca10fc9
 
 ---
 
