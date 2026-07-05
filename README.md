@@ -94,7 +94,7 @@ Active listings are kept in `Persistent` storage (to prevent ledger expiration) 
 ### Setup Instructions
 1. **Clone the Repository:**
    ```bash
-   git clone <repo-url>
+   git clone https://github.com/decoder-dd/PeerPort.git
    cd PeerPort
    ```
 2. **Install Frontend Dependencies:**
@@ -177,6 +177,6 @@ Once you deploy your contracts using the scripts, update these variables with yo
 
 | Contract / TX | Address / Hash | Explorer Link |
 | --- | --- | --- |
-| **Marketplace Contract** | `[YOUR_MARKETPLACE_CONTRACT_ADDRESS]` | [View on StellarExpert](https://stellar.expert/explorer/testnet/contract/[YOUR_MARKETPLACE_CONTRACT_ADDRESS]) |
-| **Reputation Contract** | `[YOUR_REPUTATION_CONTRACT_ADDRESS]` | [View on StellarExpert](https://stellar.expert/explorer/testnet/contract/[YOUR_REPUTATION_CONTRACT_ADDRESS]) |
-| **Sample Escrow TX Hash** | `[YOUR_TESTNET_TX_HASH]` | [View on StellarExpert](https://stellar.expert/explorer/testnet/tx/[YOUR_TESTNET_TX_HASH]) |
+| **Marketplace Contract** | `CD6XK72MNLSXCZLF5FAHL2GPULI3VPV5N5H5G5OO3Q5OMEACUYOCUZSR` | [View on StellarExpert](https://stellar.expert/explorer/testnet/contract/CD6XK72MNLSXCZLF5FAHL2GPULI3VPV5N5H5G5OO3Q5OMEACUYOCUZSR) |
+| **Reputation Contract** | `CBXP7YTCD4AR4EXWPNTAGOHXOIXES636Y3ZLEIMY4GUTF56XWHLXBQOR` | [View on StellarExpert](https://stellar.expert/explorer/testnet/contract/CBXP7YTCD4AR4EXWPNTAGOHXOIXES636Y3ZLEIMY4GUTF56XWHLXBQOR) |
+| **Sample Escrow TX Hash** | `bcb8c7d453c7fc0d671305909562ba3649bd1346f582a6e58350742a6c8a200f` | [View on StellarExpert](https://stellar.expert/explorer/testnet/tx/bcb8c7d453c7fc0d671305909562ba3649bd1346f582a6e58350742a6c8a200f) |
