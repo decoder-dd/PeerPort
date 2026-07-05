@@ -368,20 +368,21 @@ Once deployed, you can verify contract addresses and transaction logs on Stellar
 
 <!-- Screenshot Placeholder: Desktop UI -->
 ### Desktop View
-*(Add Desktop dashboard view screenshot here)*
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/21f6c0cd-7cc9-4841-81a9-10fc8fee4c3d" />
 
-<!-- Screenshot Placeholder: Mobile UI -->
 ### Mobile Responsive View
-*(Add Mobile responsive dashboard view screenshot here)*
+<img width="750" height="1599" alt="WhatsApp Image 2026-07-05 at 5 13 28 PM" src="https://github.com/user-attachments/assets/60aedf34-79f1-4a3b-b3a8-fa2462abe6b3" />
 
-<!-- Screenshot Placeholder: Multi-Wallet Integration -->
 ### Multi-Wallet Integration
-*(Add Multi-Wallet connection modal/interface screenshot here)*
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/441345d0-b291-462e-962a-08eb87b38c9d" />
+
 
 <!-- Screenshot Placeholder: CI/CD Pipeline -->
-### CI/CD Pipeline
-*(Add GitHub Actions test pipeline run screenshot here)*
+### Deployed Testnet Transaction
+<img width="1600" height="900" alt="WhatsApp Image 2026-07-05 at 3 19 34 PM" src="https://github.com/user-attachments/assets/cbf59db8-e7d1-4979-9e74-db6c2ddff98e" />
 
-<!-- Screenshot Placeholder: Tests Output -->
+### CI/CD Pipeline
+<img width="1600" height="900" alt="WhatsApp Image 2026-07-05 at 3 54 41 PM" src="https://github.com/user-attachments/assets/c9450e93-c2dd-4a44-a476-767131c0c063" />
+
 ### Test Output
-*(Add terminal screenshot showing cargo and vitest unit tests passing here)*
+<img width="793" height="123" alt="WhatsApp Image 2026-07-05 at 2 42 45 PM" src="https://github.com/user-attachments/assets/c1db5ccb-e021-46c6-92a2-89e53dd847a3" />
