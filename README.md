@@ -5,8 +5,8 @@
 </p>
 
 <p align="center">
-  <a href="https://peerport.vercel.app/" target="_blank">
-    <img src="https://img.shields.io/badge/LIVE_DEMO-PEERPORT.VERCEL.APP-cyan?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+  <a href="https://peer-port-eight.vercel.app/" target="_blank">
+    <img src="https://img.shields.io/badge/LIVE_DEMO-PEER--PORT--EIGHT.VERCEL.APP-cyan?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
   </a>
 </p>
 
