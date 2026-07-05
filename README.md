@@ -348,6 +348,7 @@ Once deployed, you can verify contract addresses and transaction logs on Stellar
 | --- | --- | --- |
 | **Marketplace Contract** | `CD6XK72MNLSXCZLF5FAHL2GPULI3VPV5N5H5G5OO3Q5OMEACUYOCUZSR` | [View on StellarExpert](https://stellar.expert/explorer/testnet/contract/CD6XK72MNLSXCZLF5FAHL2GPULI3VPV5N5H5G5OO3Q5OMEACUYOCUZSR) |
 | **Reputation Contract** | `CC4SALBUHWJGZSH7AYJZT55SPQOTINFW2X4WKOFIUETSNCDJOYPYF4WP` | [View on StellarExpert](https://stellar.expert/explorer/testnet/contract/CC4SALBUHWJGZSH7AYJZT55SPQOTINFW2X4WKOFIUETSNCDJOYPYF4WP) |
+| **Reputation Deployment TX** | `e2bfa8dc1bba5b447b4da9c6289664fac108ebda609e336764dfe7ffe5267f24` | [View on StellarExpert](https://stellar.expert/explorer/testnet/tx/e2bfa8dc1bba5b447b4da9c6289664fac108ebda609e336764dfe7ffe5267f24) |
 | **Sample Escrow TX Hash** | `bcb8c7d453c7fc0d671305909562ba3649bd1346f582a6e58350742a6c8a200f` | [View on StellarExpert](https://stellar.expert/explorer/testnet/tx/bcb8c7d453c7fc0d671305909562ba3649bd1346f582a6e58350742a6c8a200f) |
 
 ---
