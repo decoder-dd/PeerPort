@@ -373,6 +373,10 @@ Once deployed, you can verify contract addresses and transaction logs on Stellar
 ### Mobile Responsive View
 *(Add Mobile responsive dashboard view screenshot here)*
 
+<!-- Screenshot Placeholder: Multi-Wallet Integration -->
+### Multi-Wallet Integration
+*(Add Multi-Wallet connection modal/interface screenshot here)*
+
 <!-- Screenshot Placeholder: CI/CD Pipeline -->
 ### CI/CD Pipeline
 *(Add GitHub Actions test pipeline run screenshot here)*
