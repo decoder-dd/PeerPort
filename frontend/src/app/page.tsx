@@ -16,11 +16,6 @@ export default function Home() {
       <div className="mx-auto max-w-5xl px-6 relative z-10 space-y-20">
         {/* Hero Area */}
         <div className="text-center space-y-8 max-w-3xl mx-auto">
-          {/* Tagline */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-semibold text-zinc-300">
-            <span className="flex h-2 w-2 rounded-full bg-white animate-pulse" />
-            Soroban Smart Contract Powered Escrow
-          </div>
 
           {/* Heading */}
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight text-white">
