@@ -82,6 +82,7 @@ export default function Navbar() {
 
             {/* Menu Toggle (Visible on both desktop & mobile) */}
             <button
+              aria-label="Toggle Menu"
               className="rounded-xl p-2 text-zinc-400 hover:bg-white/5 transition"
               onClick={() => setMobileOpen(!mobileOpen)}
             >

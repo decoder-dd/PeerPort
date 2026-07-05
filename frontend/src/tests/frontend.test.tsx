@@ -1,5 +1,5 @@
 import { describe, test, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { useWalletStore } from '@/state/useWalletStore';
 import ListingCard from '@/components/ListingCard';
 import Navbar from '@/components/Navbar';
@@ -62,10 +62,19 @@ describe('ListingCard Component', () => {
 });
 
 describe('Navbar Component', () => {
-  test('should render logo brand name and navigation items', () => {
+  test('should render logo brand name and navigation items when toggled', () => {
     render(<Navbar />);
     
     expect(screen.getByText('PeerPort')).toBeInTheDocument();
+    
+    // Links should not be visible before clicking menu toggle
+    expect(screen.queryByText('Dashboard')).not.toBeInTheDocument();
+    
+    // Toggle menu
+    const menuBtn = screen.getByRole('button', { name: /toggle menu/i });
+    fireEvent.click(menuBtn);
+    
+    // Links should now be visible
     expect(screen.getByText('Dashboard')).toBeInTheDocument();
     expect(screen.getByText('Activity')).toBeInTheDocument();
     expect(screen.getByText('Transactions')).toBeInTheDocument();
